@@ -1,0 +1,17 @@
+{
+    "Parameters":{
+    	"BucketNameParameter" : {
+    		"Type" : "String"
+    	}
+    },
+
+    "Resources": {
+        "wendytest": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName": {"Ref": "BucketNameParameter" }
+                
+            }
+        }
+    }
+}
