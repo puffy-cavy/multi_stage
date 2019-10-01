@@ -18,6 +18,7 @@ pipeline {
              
                         if (INPUT_COMMIT_ID == true){
                             sh "echo [QA STAGE]"
+                            sh 'source qa/aws.sh'
                         }
                         else{
                             sh "echo [EXIT QA STAGE]"
@@ -30,7 +31,6 @@ pipeline {
                        throw e
                     }
                 }
-                sh 'source qa/aws.sh'
             }
         }
         stage('Deploy') { 
