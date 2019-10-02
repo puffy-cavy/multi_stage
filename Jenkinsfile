@@ -35,7 +35,21 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                echo '[DEPLOY STAGE]'
+                try { 
+                    def INPUT_Deploy_ID            
+                    timeout(time: 1, unit: 'MINUTES') {
+                    INPUT_Deploy_ID = input(id: 'input_id', message: 'Enter the commit id that needs to be deployed', parameters:[booleanParam(name: 'CONTINUE', defaultValue: false, description: 'nothing much') ])}
+                    sh "echo ${INPUT_Deploy_ID} > commitid.txt"
+         
+                    if (INPUT_Deploy_ID == true){
+                        sh "echo [ENTER QA STAGE]"
+                        sh 'source qa/aws.sh'
+                    }
+                    else{
+                        sh "echo [EXIT QA STAGE]"
+                        return
+                    }
+                }
             }
         }
     }
