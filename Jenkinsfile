@@ -35,6 +35,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
+                script{
                 try { 
                     def INPUT_Deploy_ID            
                     timeout(time: 1, unit: 'MINUTES') {
@@ -55,6 +56,7 @@ pipeline {
                        return
                        throw e
                     }
+                }
             }
         }
     }
