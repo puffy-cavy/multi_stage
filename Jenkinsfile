@@ -42,14 +42,19 @@ pipeline {
                     sh "echo ${INPUT_Deploy_ID} > commitid.txt"
          
                     if (INPUT_Deploy_ID == true){
-                        sh "echo [ENTER QA STAGE]"
+                        sh "echo [ENTER DEPLOYMENT STAGE]"
                         sh 'source qa/aws.sh'
                     }
                     else{
-                        sh "echo [EXIT QA STAGE]"
+                        sh "echo [EXIT DEPLOYMENT STAGE]"
                         return
                     }
                 }
+                catch(e) {
+                       echo('[EXIT DEPLOYMENT STAGE]')
+                       return
+                       throw e
+                    }
             }
         }
     }
