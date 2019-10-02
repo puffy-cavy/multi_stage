@@ -51,7 +51,7 @@ pipeline {
                     }
                 }
                 catch(e) {
-                       echo('[EXIT DEPLOYMENT STAGE]')
+                       sh "echo [EXIT DEPLOYMENT STAGE]"
                        return
                        throw e
                     }
